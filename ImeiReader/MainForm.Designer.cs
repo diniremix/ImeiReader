@@ -40,17 +40,17 @@ namespace ImeiReader
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.textimei = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnfind = new System.Windows.Forms.Button();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.leerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnusaveimei = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnufindimei = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-			this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuexit = new System.Windows.Forms.ToolStripMenuItem();
 			this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnubackupdb = new System.Windows.Forms.ToolStripMenuItem();
 			this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnuabout = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -82,6 +82,7 @@ namespace ImeiReader
 			this.textimei.Name = "textimei";
 			this.textimei.Size = new System.Drawing.Size(153, 20);
 			this.textimei.TabIndex = 0;
+			this.textimei.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// label1
 			// 
@@ -91,14 +92,15 @@ namespace ImeiReader
 			this.label1.TabIndex = 0;
 			this.label1.Text = "IMEI:";
 			// 
-			// button1
+			// btnfind
 			// 
-			this.button1.Location = new System.Drawing.Point(181, 177);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "&Buscar";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnfind.Location = new System.Drawing.Point(181, 177);
+			this.btnfind.Name = "btnfind";
+			this.btnfind.Size = new System.Drawing.Size(75, 23);
+			this.btnfind.TabIndex = 2;
+			this.btnfind.Text = "&Buscar";
+			this.btnfind.UseVisualStyleBackColor = true;
+			this.btnfind.Click += new System.EventHandler(this.BtnfindClick);
 			// 
 			// menuStrip1
 			// 
@@ -115,71 +117,79 @@ namespace ImeiReader
 			// archivoToolStripMenuItem
 			// 
 			this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.leerToolStripMenuItem,
-									this.buscarToolStripMenuItem,
+									this.mnusaveimei,
+									this.mnufindimei,
 									this.toolStripMenuItem1,
-									this.salirToolStripMenuItem});
+									this.mnuexit});
 			this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
 			this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
 			this.archivoToolStripMenuItem.Text = "&Archivo";
 			// 
-			// leerToolStripMenuItem
+			// mnusaveimei
 			// 
-			this.leerToolStripMenuItem.Name = "leerToolStripMenuItem";
-			this.leerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-			this.leerToolStripMenuItem.Text = "&Leer IMEI";
+			this.mnusaveimei.Name = "mnusaveimei";
+			this.mnusaveimei.ShortcutKeys = System.Windows.Forms.Keys.F2;
+			this.mnusaveimei.Size = new System.Drawing.Size(161, 22);
+			this.mnusaveimei.Text = "&Guardar IMEI";
+			this.mnusaveimei.Click += new System.EventHandler(this.MnusaveimeiClick);
 			// 
-			// buscarToolStripMenuItem
+			// mnufindimei
 			// 
-			this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-			this.buscarToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-			this.buscarToolStripMenuItem.Text = "&Buscar";
+			this.mnufindimei.Name = "mnufindimei";
+			this.mnufindimei.ShortcutKeys = System.Windows.Forms.Keys.F3;
+			this.mnufindimei.Size = new System.Drawing.Size(161, 22);
+			this.mnufindimei.Text = "&Buscar IMEI";
+			this.mnufindimei.Click += new System.EventHandler(this.MnufindimeiClick);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(119, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(158, 6);
 			// 
-			// salirToolStripMenuItem
+			// mnuexit
 			// 
-			this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-			this.salirToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-			this.salirToolStripMenuItem.Text = "&Salir";
+			this.mnuexit.Name = "mnuexit";
+			this.mnuexit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+			this.mnuexit.Size = new System.Drawing.Size(161, 22);
+			this.mnuexit.Text = "&Salir";
+			this.mnuexit.Click += new System.EventHandler(this.MnuexitClick);
 			// 
 			// herramientasToolStripMenuItem
 			// 
 			this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.backupToolStripMenuItem});
+									this.mnubackupdb});
 			this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
 			this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
 			this.herramientasToolStripMenuItem.Text = "&Herramientas";
 			// 
-			// backupToolStripMenuItem
+			// mnubackupdb
 			// 
-			this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-			this.backupToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-			this.backupToolStripMenuItem.Text = "&Backup";
+			this.mnubackupdb.Name = "mnubackupdb";
+			this.mnubackupdb.Size = new System.Drawing.Size(113, 22);
+			this.mnubackupdb.Text = "&Backup";
+			this.mnubackupdb.Click += new System.EventHandler(this.MnubackupdbClick);
 			// 
 			// ayudaToolStripMenuItem
 			// 
 			this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.acercadeToolStripMenuItem});
+									this.mnuabout});
 			this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
 			this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
 			this.ayudaToolStripMenuItem.Text = "Ay&uda";
 			// 
-			// acercadeToolStripMenuItem
+			// mnuabout
 			// 
-			this.acercadeToolStripMenuItem.Name = "acercadeToolStripMenuItem";
-			this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-			this.acercadeToolStripMenuItem.Text = "&Acerca de";
+			this.mnuabout.Name = "mnuabout";
+			this.mnuabout.Size = new System.Drawing.Size(126, 22);
+			this.mnuabout.Text = "&Acerca de";
+			this.mnuabout.Click += new System.EventHandler(this.MnuaboutClick);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(380, 212);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btnfind);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnsave);
 			this.Controls.Add(this.menuStrip1);
@@ -195,17 +205,17 @@ namespace ImeiReader
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
-		private System.Windows.Forms.ToolStripMenuItem acercadeToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem mnuabout;
 		private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem mnubackupdb;
 		private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem mnuexit;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem buscarToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem leerToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem mnufindimei;
+		private System.Windows.Forms.ToolStripMenuItem mnusaveimei;
 		private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
 		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnfind;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox textimei;
 		private System.Windows.Forms.GroupBox groupBox1;
