@@ -1,0 +1,6 @@
+*.exe
+*.pdb
+*.cache
+*.db
+ImeiReader/[Bb]in/*
+ImeiReader/[Oo]bj/*
