@@ -78,17 +78,18 @@ namespace ImeiReader
 			// 
 			// textimei
 			// 
-			this.textimei.Location = new System.Drawing.Point(65, 30);
+			this.textimei.Location = new System.Drawing.Point(116, 29);
 			this.textimei.Name = "textimei";
 			this.textimei.Size = new System.Drawing.Size(153, 20);
 			this.textimei.TabIndex = 0;
 			this.textimei.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textimei.TextChanged += new System.EventHandler(this.TextimeiTextChanged);
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(17, 34);
+			this.label1.Location = new System.Drawing.Point(68, 33);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(59, 16);
+			this.label1.Size = new System.Drawing.Size(42, 16);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "IMEI:";
 			// 

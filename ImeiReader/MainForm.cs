@@ -19,6 +19,8 @@ namespace ImeiReader{
 	/// </summary>
 	public partial class MainForm : Form{
 		static SQLiteConnection conexion;
+		string sqlquery;
+		int result=0;
 		Frmbusq fbusq= new Frmbusq();
 		public MainForm(){
 			//
@@ -32,6 +34,9 @@ namespace ImeiReader{
 		}		
 		
 		void MainFormLoad(object sender, EventArgs e){
+			if(!checkdb()){
+				MnuexitClick(sender,e);
+			}
 			textimei.Focus();
 		}
 		
@@ -55,21 +60,69 @@ namespace ImeiReader{
 		
 		void MnuaboutClick(object sender, EventArgs e){
 			//about
+			MessageBox.Show("IMEIReader 0.1\nJorge Brunal Perez\ndiniremix@gmail.com","IMEIReader",MessageBoxButtons.OK,MessageBoxIcon.Information);
 		}		
 		
 		void BtnsaveClick(object sender, EventArgs e){
-			//save
-			
+			if(textimei.Text!=""){
+				try{
+					SQLiteCommand cmd;				
+					sqlquery = "INSERT INTO regimei(imeireg,fechareg) "+
+					"VALUES  ("+"'"+textimei.Text+"'"+",'fecha1')";
+					cmd = new SQLiteCommand(sqlquery, conexion);
+					result = cmd.ExecuteNonQuery();
+					textimei.Clear();					
+				}catch (Exception ex){
+					MessageBox.Show("Ocurrio un Error al guardar el IMEI en la Base de Datos\n"+ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+				}
+			}			
+			textimei.Focus();
 		}
 		
 		void BtnfindClick(object sender, EventArgs e){
 			fbusq.ShowDialog();
 		}
 		
-		//database function
-		bool checkdb(){
-			
-			return false;
+		//database functions
+		bool checkdb(){		
+			if (!File.Exists("imeidb.sqlite")){
+				try{
+					// Creamos la conexion a la BD.
+					// El Data Source contiene la ruta del archivo de la BD 				
+					conexion = new SQLiteConnection("Data Source=imeidb.sqlite;Version=3;New=True;Compress=True;");
+					conexion.Open();                  
+					// Creamos la tabla regimei
+					string sqlquery = "CREATE TABLE IF NOT EXISTS regimei "
+					+"(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, imeireg VARCHAR(30) NOT NULL, fechareg VARCHAR(10) NOT NULL)";
+					SQLiteCommand cmd = new SQLiteCommand(sqlquery, conexion);
+					result=cmd.ExecuteNonQuery();
+					textimei.Text=result.ToString();
+					if (result< 1){
+						MessageBox.Show("Ocurrio un Error al crear la Base de Datos","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+						return false;
+					}else{
+						return true;
+					}
+				}catch (Exception ex){
+					MessageBox.Show(ex.Message);
+					return false;
+				}
+	        }else{
+	            // Creamos la conexion a la BD. 
+	            // El Data Source contiene la ruta del archivo de la BD 
+	            try{
+	            	conexion =new SQLiteConnection("Data Source=imeidb.sqlite;Version=3;New=False;Compress=True;");
+		            conexion.Open();
+		            return true;
+	            }catch (Exception ex){
+					MessageBox.Show(ex.Message);
+					return false;
+				}
+	        }
+		}
+		
+		void TextimeiTextChanged(object sender, EventArgs e){
+			//onchange
 		}
 	}
 }
