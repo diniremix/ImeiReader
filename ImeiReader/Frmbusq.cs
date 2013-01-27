@@ -15,10 +15,8 @@ namespace ImeiReader
 	/// <summary>
 	/// Description of Frmbusq.
 	/// </summary>
-	public partial class Frmbusq : Form
-	{
-		public Frmbusq()
-		{
+	public partial class Frmbusq : Form{
+		public Frmbusq(){
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
@@ -27,6 +25,16 @@ namespace ImeiReader
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
+		}
+		
+		void BtnbackClick(object sender, EventArgs e){
+			//textbimei.Clear();
+			//this.Close();
+			//resultGrid.ColumnHeadersVisible//
+		}
+		
+		void TextbimeiTextChanged(object sender, EventArgs e){
+			//onchange
 		}
 	}
 }

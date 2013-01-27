@@ -37,13 +37,17 @@ namespace ImeiReader
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.textbimei = new System.Windows.Forms.TextBox();
+			this.resultGrid = new System.Windows.Forms.DataGrid();
 			this.label1 = new System.Windows.Forms.Label();
+			this.textbimei = new System.Windows.Forms.TextBox();
+			this.btnback = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.resultGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.resultGrid);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.textbimei);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -53,13 +57,15 @@ namespace ImeiReader
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Busqueda por IMEI";
 			// 
-			// textbimei
+			// resultGrid
 			// 
-			this.textbimei.Location = new System.Drawing.Point(50, 27);
-			this.textbimei.Name = "textbimei";
-			this.textbimei.Size = new System.Drawing.Size(175, 20);
-			this.textbimei.TabIndex = 0;
-			this.textbimei.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.resultGrid.DataMember = "";
+			this.resultGrid.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+			this.resultGrid.Location = new System.Drawing.Point(6, 53);
+			this.resultGrid.Name = "resultGrid";
+			this.resultGrid.ReadOnly = true;
+			this.resultGrid.Size = new System.Drawing.Size(490, 210);
+			this.resultGrid.TabIndex = 2;
 			// 
 			// label1
 			// 
@@ -69,19 +75,42 @@ namespace ImeiReader
 			this.label1.TabIndex = 1;
 			this.label1.Text = "IMEI:";
 			// 
+			// textbimei
+			// 
+			this.textbimei.Location = new System.Drawing.Point(50, 27);
+			this.textbimei.Name = "textbimei";
+			this.textbimei.Size = new System.Drawing.Size(175, 20);
+			this.textbimei.TabIndex = 0;
+			this.textbimei.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textbimei.TextChanged += new System.EventHandler(this.TextbimeiTextChanged);
+			// 
+			// btnback
+			// 
+			this.btnback.Location = new System.Drawing.Point(218, 287);
+			this.btnback.Name = "btnback";
+			this.btnback.Size = new System.Drawing.Size(75, 23);
+			this.btnback.TabIndex = 1;
+			this.btnback.Text = "&Regresar";
+			this.btnback.UseVisualStyleBackColor = true;
+			this.btnback.Click += new System.EventHandler(this.BtnbackClick);
+			// 
 			// Frmbusq
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(548, 332);
+			this.ClientSize = new System.Drawing.Size(530, 316);
+			this.Controls.Add(this.btnback);
 			this.Controls.Add(this.groupBox1);
 			this.MaximizeBox = false;
 			this.Name = "Frmbusq";
-			this.Text = "Frmbusq";
+			this.Text = "IMEIReader::Busqueda";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.DataGrid resultGrid;
+		private System.Windows.Forms.Button btnback;
 		private System.Windows.Forms.TextBox textbimei;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.GroupBox groupBox1;

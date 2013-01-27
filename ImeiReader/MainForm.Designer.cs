@@ -36,6 +36,7 @@ namespace ImeiReader
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.btnsave = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.textimei = new System.Windows.Forms.TextBox();
@@ -128,6 +129,7 @@ namespace ImeiReader
 			// 
 			// mnusaveimei
 			// 
+			this.mnusaveimei.Image = ((System.Drawing.Image)(resources.GetObject("mnusaveimei.Image")));
 			this.mnusaveimei.Name = "mnusaveimei";
 			this.mnusaveimei.ShortcutKeys = System.Windows.Forms.Keys.F2;
 			this.mnusaveimei.Size = new System.Drawing.Size(161, 22);
@@ -136,6 +138,7 @@ namespace ImeiReader
 			// 
 			// mnufindimei
 			// 
+			this.mnufindimei.Image = ((System.Drawing.Image)(resources.GetObject("mnufindimei.Image")));
 			this.mnufindimei.Name = "mnufindimei";
 			this.mnufindimei.ShortcutKeys = System.Windows.Forms.Keys.F3;
 			this.mnufindimei.Size = new System.Drawing.Size(161, 22);
@@ -149,6 +152,7 @@ namespace ImeiReader
 			// 
 			// mnuexit
 			// 
+			this.mnuexit.Image = ((System.Drawing.Image)(resources.GetObject("mnuexit.Image")));
 			this.mnuexit.Name = "mnuexit";
 			this.mnuexit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
 			this.mnuexit.Size = new System.Drawing.Size(161, 22);
@@ -165,8 +169,9 @@ namespace ImeiReader
 			// 
 			// mnubackupdb
 			// 
+			this.mnubackupdb.Image = ((System.Drawing.Image)(resources.GetObject("mnubackupdb.Image")));
 			this.mnubackupdb.Name = "mnubackupdb";
-			this.mnubackupdb.Size = new System.Drawing.Size(113, 22);
+			this.mnubackupdb.Size = new System.Drawing.Size(152, 22);
 			this.mnubackupdb.Text = "&Backup";
 			this.mnubackupdb.Click += new System.EventHandler(this.MnubackupdbClick);
 			// 
@@ -180,8 +185,9 @@ namespace ImeiReader
 			// 
 			// mnuabout
 			// 
+			this.mnuabout.Image = ((System.Drawing.Image)(resources.GetObject("mnuabout.Image")));
 			this.mnuabout.Name = "mnuabout";
-			this.mnuabout.Size = new System.Drawing.Size(126, 22);
+			this.mnuabout.Size = new System.Drawing.Size(152, 22);
 			this.mnuabout.Text = "&Acerca de";
 			this.mnuabout.Click += new System.EventHandler(this.MnuaboutClick);
 			// 
