@@ -64,11 +64,17 @@ namespace ImeiReader{
 		}		
 		
 		void BtnsaveClick(object sender, EventArgs e){
+			string dia,mes,anio,fecha_act;
+			dia=DateTime.Today.Day.ToString();			
+			mes=DateTime.Today.Month.ToString();
+			anio=DateTime.Today.Year.ToString();
+			fecha_act=dia+"/"+mes+"/"+anio;
+			
 			if(textimei.Text!=""){
 				try{
 					SQLiteCommand cmd;				
 					sqlquery = "INSERT INTO regimei(imeireg,fechareg) "+
-					"VALUES  ("+"'"+textimei.Text+"'"+",'fecha1')";
+						"VALUES  ("+ "'"+textimei.Text+"'"+",'"+fecha_act+"')";
 					cmd = new SQLiteCommand(sqlquery, conexion);
 					result = cmd.ExecuteNonQuery();
 					textimei.Clear();					
@@ -80,6 +86,7 @@ namespace ImeiReader{
 		}
 		
 		void BtnfindClick(object sender, EventArgs e){
+			//conexion.Close();
 			fbusq.ShowDialog();
 		}
 		

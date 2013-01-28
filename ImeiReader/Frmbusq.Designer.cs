@@ -37,7 +37,7 @@ namespace ImeiReader
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.resultGrid = new System.Windows.Forms.DataGrid();
+			this.resultGrid = new System.Windows.Forms.DataGridView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textbimei = new System.Windows.Forms.TextBox();
 			this.btnback = new System.Windows.Forms.Button();
@@ -59,13 +59,17 @@ namespace ImeiReader
 			// 
 			// resultGrid
 			// 
-			this.resultGrid.DataMember = "";
-			this.resultGrid.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+			this.resultGrid.AllowUserToAddRows = false;
+			this.resultGrid.AllowUserToDeleteRows = false;
+			this.resultGrid.AllowUserToResizeColumns = false;
+			this.resultGrid.AllowUserToResizeRows = false;
+			this.resultGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.resultGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.resultGrid.Location = new System.Drawing.Point(6, 53);
 			this.resultGrid.Name = "resultGrid";
 			this.resultGrid.ReadOnly = true;
 			this.resultGrid.Size = new System.Drawing.Size(490, 210);
-			this.resultGrid.TabIndex = 2;
+			this.resultGrid.TabIndex = 3;
 			// 
 			// label1
 			// 
@@ -98,7 +102,7 @@ namespace ImeiReader
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(530, 316);
+			this.ClientSize = new System.Drawing.Size(530, 317);
 			this.Controls.Add(this.btnback);
 			this.Controls.Add(this.groupBox1);
 			this.MaximizeBox = false;
@@ -109,7 +113,7 @@ namespace ImeiReader
 			((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.DataGrid resultGrid;
+		private System.Windows.Forms.DataGridView resultGrid;
 		private System.Windows.Forms.Button btnback;
 		private System.Windows.Forms.TextBox textbimei;
 		private System.Windows.Forms.Label label1;
