@@ -46,6 +46,7 @@ namespace ImeiReader{
 				}
 				sqlquery="select imeireg as IMEI, fechareg as Fecha from regimei where imeireg="+"'"+textbimei.Text+"'";
 				SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlquery, conn);
+				dtset.Clear();
 				adapter.Fill(dtset);
 				resultGrid.DataSource = dtset.Tables[0].DefaultView;
 				conn.Close();
