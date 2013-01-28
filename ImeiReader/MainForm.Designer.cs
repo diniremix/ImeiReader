@@ -84,7 +84,6 @@ namespace ImeiReader
 			this.textimei.Size = new System.Drawing.Size(153, 20);
 			this.textimei.TabIndex = 0;
 			this.textimei.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			this.textimei.TextChanged += new System.EventHandler(this.TextimeiTextChanged);
 			// 
 			// label1
 			// 

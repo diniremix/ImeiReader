@@ -23,8 +23,7 @@ namespace ImeiReader{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
-			InitializeComponent();
-			
+			InitializeComponent();			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -56,7 +55,6 @@ namespace ImeiReader{
 		}
 		
 		void TextbimeiTextChanged(object sender, EventArgs e){
-			//onchange
 			loaddata();
 		}
 	}

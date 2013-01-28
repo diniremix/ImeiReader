@@ -26,8 +26,7 @@ namespace ImeiReader{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
-			InitializeComponent();
-			
+			InitializeComponent();			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -41,35 +40,28 @@ namespace ImeiReader{
 		}
 		
 		void MnusaveimeiClick(object sender, EventArgs e){
-			//save
 			BtnsaveClick(sender,e);
 		}
 		
 		void MnufindimeiClick(object sender, EventArgs e){
-			//buscar
 			BtnfindClick(sender,e);
 		}
 		
 		void MnuexitClick(object sender, EventArgs e){
+			conexion.Close();
 			Application.Exit();
 		}
 		
 		void MnubackupdbClick(object sender, EventArgs e){
-			//backup
+			MessageBox.Show("La función de Backup estará disponible en una futura versión.","IMEIReader",MessageBoxButtons.OK,MessageBoxIcon.Information);
 		}
 		
 		void MnuaboutClick(object sender, EventArgs e){
-			//about
-			MessageBox.Show("IMEIReader 0.1\nJorge Brunal Perez\ndiniremix@gmail.com","IMEIReader",MessageBoxButtons.OK,MessageBoxIcon.Information);
+			MessageBox.Show("IMEIReader 0.2\nJorge Brunal Perez (AKA Diniremix)\ndiniremix@gmail.com","IMEIReader",MessageBoxButtons.OK,MessageBoxIcon.Information);
 		}		
 		
 		void BtnsaveClick(object sender, EventArgs e){
-			string dia,mes,anio,fecha_act;
-			dia=DateTime.Today.Day.ToString();			
-			mes=DateTime.Today.Month.ToString();
-			anio=DateTime.Today.Year.ToString();
-			fecha_act=dia+"/"+mes+"/"+anio;
-			
+			string fecha_act=getCurrentDate();
 			if(textimei.Text!=""){
 				try{
 					SQLiteCommand cmd;				
@@ -85,20 +77,23 @@ namespace ImeiReader{
 			textimei.Focus();
 		}
 		
+		string getCurrentDate(){
+			string dia,mes,anio;
+			dia=DateTime.Today.Day.ToString();			
+			mes=DateTime.Today.Month.ToString();
+			anio=DateTime.Today.Year.ToString();
+			return dia+"/"+mes+"/"+anio;
+		}
+		
 		void BtnfindClick(object sender, EventArgs e){
-			//conexion.Close();
 			fbusq.ShowDialog();
 		}
 		
-		//database functions
 		bool checkdb(){		
 			if (!File.Exists("imeidb.sqlite")){
 				try{
-					// Creamos la conexion a la BD.
-					// El Data Source contiene la ruta del archivo de la BD 				
 					conexion = new SQLiteConnection("Data Source=imeidb.sqlite;Version=3;New=True;Compress=True;");
 					conexion.Open();                  
-					// Creamos la tabla regimei
 					string sqlquery = "CREATE TABLE IF NOT EXISTS regimei "
 					+"(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, imeireg VARCHAR(30) NOT NULL, fechareg VARCHAR(10) NOT NULL)";
 					SQLiteCommand cmd = new SQLiteCommand(sqlquery, conexion);
@@ -115,8 +110,6 @@ namespace ImeiReader{
 					return false;
 				}
 	        }else{
-	            // Creamos la conexion a la BD. 
-	            // El Data Source contiene la ruta del archivo de la BD 
 	            try{
 	            	conexion =new SQLiteConnection("Data Source=imeidb.sqlite;Version=3;New=False;Compress=True;");
 		            conexion.Open();
@@ -126,10 +119,6 @@ namespace ImeiReader{
 					return false;
 				}
 	        }
-		}
-		
-		void TextimeiTextChanged(object sender, EventArgs e){
-			//onchange
-		}
+		}		
 	}
 }
