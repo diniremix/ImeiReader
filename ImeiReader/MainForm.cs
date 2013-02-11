@@ -22,6 +22,7 @@ namespace ImeiReader{
 		string sqlquery;
 		int result=0;
 		Frmbusq fbusq= new Frmbusq();
+		Frmgarant fgar= new Frmgarant();
 		public MainForm(){
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -33,6 +34,7 @@ namespace ImeiReader{
 		}		
 		
 		void MainFormLoad(object sender, EventArgs e){
+			cbocodvend.SelectedIndex=0;
 			if(!checkdb()){
 				MnuexitClick(sender,e);
 			}
@@ -65,8 +67,8 @@ namespace ImeiReader{
 			if(textimei.Text!=""){
 				try{
 					SQLiteCommand cmd;				
-					sqlquery = "INSERT INTO regimei(imeireg,fechareg) "+
-						"VALUES  ("+ "'"+textimei.Text+"'"+",'"+fecha_act+"')";
+					sqlquery = "INSERT INTO regimei(imeireg,fechareg,codvend) "+
+						"VALUES  ("+ "'"+textimei.Text+"'" +",'"+fecha_act+"',"+"'"+cbocodvend.Text+"')";					
 					cmd = new SQLiteCommand(sqlquery, conexion);
 					result = cmd.ExecuteNonQuery();
 					textimei.Clear();					
@@ -91,13 +93,25 @@ namespace ImeiReader{
 		
 		bool checkdb(){		
 			if (!File.Exists("imeidb.sqlite")){
+				 SQLiteCommand cmd; 
 				try{
 					conexion = new SQLiteConnection("Data Source=imeidb.sqlite;Version=3;New=True;Compress=True;");
-					conexion.Open();                  
+					conexion.Open();
+					
+					//tabla de imei					
 					string sqlquery = "CREATE TABLE IF NOT EXISTS regimei "
-					+"(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, imeireg VARCHAR(30) NOT NULL, fechareg VARCHAR(10) NOT NULL)";
-					SQLiteCommand cmd = new SQLiteCommand(sqlquery, conexion);
+					+"(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, imeireg VARCHAR(30) NOT NULL, fechareg VARCHAR(10) NOT NULL,fechagarant VARCHAR(10),codvend INTEGER NOT NULL)";
+					cmd = new SQLiteCommand(sqlquery, conexion);
 					result=cmd.ExecuteNonQuery();
+					
+					//tabla usuarios
+					sqlquery = "CREATE TABLE IF NOT EXISTS usuarios "
+					+"(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nombre VARCHAR(12))";
+					cmd = new SQLiteCommand(sqlquery, conexion);
+					cmd.ExecuteNonQuery();
+					
+					CreateUsers();
+					
 					textimei.Text=result.ToString();
 					if (result< 1){
 						MessageBox.Show("Ocurrio un Error al crear la Base de Datos","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
@@ -119,6 +133,50 @@ namespace ImeiReader{
 					return false;
 				}
 	        }
-		}		
+		}
+		
+		void CreateUsers(){
+			SQLiteCommand cmd; 
+			//creacion de usuarios
+			sqlquery = "INSERT INTO usuarios(nombre) "
+			+"VALUES('David')";
+			cmd = new SQLiteCommand(sqlquery, conexion);
+			cmd.ExecuteNonQuery();
+			
+			sqlquery = "INSERT INTO usuarios(nombre) "
+			+"VALUES('Laura')";
+			cmd = new SQLiteCommand(sqlquery, conexion);
+			cmd.ExecuteNonQuery();
+			
+			sqlquery = "INSERT INTO usuarios(nombre) "
+			+"VALUES('Lorena')";
+			cmd = new SQLiteCommand(sqlquery, conexion);
+			cmd.ExecuteNonQuery();
+			
+			sqlquery = "INSERT INTO usuarios(nombre) "
+			+"VALUES('Carlos')";
+			cmd = new SQLiteCommand(sqlquery, conexion);
+			cmd.ExecuteNonQuery();
+			
+			sqlquery = "INSERT INTO usuarios(nombre) "
+			+"VALUES('Daniel')";
+			cmd = new SQLiteCommand(sqlquery, conexion);
+			cmd.ExecuteNonQuery();
+			
+			sqlquery = "INSERT INTO usuarios(nombre) "
+			+"VALUES('Deisy')";
+			cmd = new SQLiteCommand(sqlquery, conexion);
+			cmd.ExecuteNonQuery();
+			
+			sqlquery = "INSERT INTO usuarios(nombre) "
+			+"VALUES('Maria')";
+			cmd = new SQLiteCommand(sqlquery, conexion);
+			cmd.ExecuteNonQuery();
+		}
+		
+		void MnufindgarantClick(object sender, EventArgs e){
+			fgar.setfecha(getCurrentDate());
+			fgar.ShowDialog();
+		}
 	}
 }

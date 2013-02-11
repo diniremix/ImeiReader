@@ -39,6 +39,8 @@ namespace ImeiReader
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.btnsave = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.cbocodvend = new System.Windows.Forms.ComboBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.textimei = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnfind = new System.Windows.Forms.Button();
@@ -46,6 +48,7 @@ namespace ImeiReader
 			this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnusaveimei = new System.Windows.Forms.ToolStripMenuItem();
 			this.mnufindimei = new System.Windows.Forms.ToolStripMenuItem();
+			this.mnufindgarant = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.mnuexit = new System.Windows.Forms.ToolStripMenuItem();
 			this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +71,8 @@ namespace ImeiReader
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.cbocodvend);
+			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.textimei);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Location = new System.Drawing.Point(12, 27);
@@ -77,9 +82,33 @@ namespace ImeiReader
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Leer Codigo IMEI";
 			// 
+			// cbocodvend
+			// 
+			this.cbocodvend.FormattingEnabled = true;
+			this.cbocodvend.Items.AddRange(new object[] {
+									"01",
+									"02",
+									"03",
+									"04",
+									"05",
+									"06",
+									"07"});
+			this.cbocodvend.Location = new System.Drawing.Point(131, 70);
+			this.cbocodvend.Name = "cbocodvend";
+			this.cbocodvend.Size = new System.Drawing.Size(153, 21);
+			this.cbocodvend.TabIndex = 2;
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(61, 73);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(64, 18);
+			this.label2.TabIndex = 1;
+			this.label2.Text = "Cod Vend:";
+			// 
 			// textimei
 			// 
-			this.textimei.Location = new System.Drawing.Point(116, 29);
+			this.textimei.Location = new System.Drawing.Point(131, 35);
 			this.textimei.Name = "textimei";
 			this.textimei.Size = new System.Drawing.Size(153, 20);
 			this.textimei.TabIndex = 0;
@@ -87,7 +116,7 @@ namespace ImeiReader
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(68, 33);
+			this.label1.Location = new System.Drawing.Point(61, 38);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(42, 16);
 			this.label1.TabIndex = 0;
@@ -120,6 +149,7 @@ namespace ImeiReader
 			this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.mnusaveimei,
 									this.mnufindimei,
+									this.mnufindgarant,
 									this.toolStripMenuItem1,
 									this.mnuexit});
 			this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
@@ -131,7 +161,7 @@ namespace ImeiReader
 			this.mnusaveimei.Image = ((System.Drawing.Image)(resources.GetObject("mnusaveimei.Image")));
 			this.mnusaveimei.Name = "mnusaveimei";
 			this.mnusaveimei.ShortcutKeys = System.Windows.Forms.Keys.F2;
-			this.mnusaveimei.Size = new System.Drawing.Size(161, 22);
+			this.mnusaveimei.Size = new System.Drawing.Size(198, 22);
 			this.mnusaveimei.Text = "&Guardar IMEI";
 			this.mnusaveimei.Click += new System.EventHandler(this.MnusaveimeiClick);
 			// 
@@ -140,21 +170,30 @@ namespace ImeiReader
 			this.mnufindimei.Image = ((System.Drawing.Image)(resources.GetObject("mnufindimei.Image")));
 			this.mnufindimei.Name = "mnufindimei";
 			this.mnufindimei.ShortcutKeys = System.Windows.Forms.Keys.F3;
-			this.mnufindimei.Size = new System.Drawing.Size(161, 22);
+			this.mnufindimei.Size = new System.Drawing.Size(198, 22);
 			this.mnufindimei.Text = "&Buscar IMEI";
 			this.mnufindimei.Click += new System.EventHandler(this.MnufindimeiClick);
+			// 
+			// mnufindgarant
+			// 
+			this.mnufindgarant.Image = ((System.Drawing.Image)(resources.GetObject("mnufindgarant.Image")));
+			this.mnufindgarant.Name = "mnufindgarant";
+			this.mnufindgarant.ShortcutKeys = System.Windows.Forms.Keys.F4;
+			this.mnufindgarant.Size = new System.Drawing.Size(198, 22);
+			this.mnufindgarant.Text = "Garantia de &equipos";
+			this.mnufindgarant.Click += new System.EventHandler(this.MnufindgarantClick);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(158, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(195, 6);
 			// 
 			// mnuexit
 			// 
 			this.mnuexit.Image = ((System.Drawing.Image)(resources.GetObject("mnuexit.Image")));
 			this.mnuexit.Name = "mnuexit";
 			this.mnuexit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-			this.mnuexit.Size = new System.Drawing.Size(161, 22);
+			this.mnuexit.Size = new System.Drawing.Size(198, 22);
 			this.mnuexit.Text = "&Salir";
 			this.mnuexit.Click += new System.EventHandler(this.MnuexitClick);
 			// 
@@ -170,7 +209,7 @@ namespace ImeiReader
 			// 
 			this.mnubackupdb.Image = ((System.Drawing.Image)(resources.GetObject("mnubackupdb.Image")));
 			this.mnubackupdb.Name = "mnubackupdb";
-			this.mnubackupdb.Size = new System.Drawing.Size(152, 22);
+			this.mnubackupdb.Size = new System.Drawing.Size(113, 22);
 			this.mnubackupdb.Text = "&Backup";
 			this.mnubackupdb.Click += new System.EventHandler(this.MnubackupdbClick);
 			// 
@@ -186,7 +225,7 @@ namespace ImeiReader
 			// 
 			this.mnuabout.Image = ((System.Drawing.Image)(resources.GetObject("mnuabout.Image")));
 			this.mnuabout.Name = "mnuabout";
-			this.mnuabout.Size = new System.Drawing.Size(152, 22);
+			this.mnuabout.Size = new System.Drawing.Size(126, 22);
 			this.mnuabout.Text = "&Acerca de";
 			this.mnuabout.Click += new System.EventHandler(this.MnuaboutClick);
 			// 
@@ -211,6 +250,9 @@ namespace ImeiReader
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem mnufindgarant;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ComboBox cbocodvend;
 		private System.Windows.Forms.ToolStripMenuItem mnuabout;
 		private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem mnubackupdb;

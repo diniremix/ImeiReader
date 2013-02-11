@@ -1,8 +1,8 @@
 ﻿/*
  * Creado por SharpDevelop.
  * Usuario: diniremix
- * Fecha: 26/01/2013
- * Hora: 11:40 p.m.
+ * Fecha: 29/01/2013
+ * Hora: 12:44 a.m.
  * 
  * Para cambiar esta plantilla use Herramientas | Opciones | Codificación | Editar Encabezados Estándar
  */
@@ -14,16 +14,18 @@ using System.Data.SQLite;
 
 namespace ImeiReader{
 	/// <summary>
-	/// Description of Frmbusq.
+	/// Description of Frmgarant.
 	/// </summary>
-	public partial class Frmbusq : Form{
+	public partial class Frmgarant : Form{
 		static SQLiteConnection conn;
 		DataSet dtset= new DataSet();
-		public Frmbusq(){
+		string update;
+		public Frmgarant(){
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
-			InitializeComponent();			
+			InitializeComponent();
+			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -33,8 +35,14 @@ namespace ImeiReader{
 			this.Close();
 		}
 		
+		void FrmgarantFormClosing(object sender, FormClosingEventArgs e){
+			textbimei.Clear();
+			dtset.Clear();
+		}
+		
 		void loaddata(){
-			string sqlquery="";
+			string sqlquery="";	
+			SQLiteCommand cmd;	
 			if(textbimei.Text!=""){
 				try{
 		            conn =new SQLiteConnection("Data Source=imeidb.sqlite;Version=3;New=False;Compress=True;");
@@ -42,7 +50,10 @@ namespace ImeiReader{
 		        }catch (Exception ex){
 					MessageBox.Show(ex.Message);					
 				}
-				sqlquery="select imeireg as IMEI, fechareg as Fecha,nombre as Vendedor from regimei, usuarios user where imeireg="+"'"+textbimei.Text+"' and codvend=user.id";				
+				sqlquery="update regimei set fechagarant="+"'"+update+"'"+" where imeireg="+"'"+textbimei.Text+"'";
+				cmd = new SQLiteCommand(sqlquery, conn);
+				cmd.ExecuteNonQuery();
+				sqlquery="select imeireg as IMEI, fechagarant as 'Fecha Garantia',nombre as Vendedor from regimei, usuarios user where imeireg="+"'"+textbimei.Text+"' and codvend=user.id";									
 				SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlquery, conn);
 				dtset.Clear();
 				adapter.Fill(dtset);
@@ -56,10 +67,9 @@ namespace ImeiReader{
 		void TextbimeiTextChanged(object sender, EventArgs e){
 			loaddata();
 		}
-	
-		void FrmbusqFormClosing(object sender, FormClosingEventArgs e){
-			textbimei.Clear();
-			dtset.Clear();
+		
+		public void setfecha(string fecha){
+			update=fecha;
 		}
 	}
 }

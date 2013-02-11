@@ -1,14 +1,14 @@
 ﻿/*
  * Creado por SharpDevelop.
  * Usuario: diniremix
- * Fecha: 26/01/2013
- * Hora: 11:40 p.m.
+ * Fecha: 29/01/2013
+ * Hora: 12:44 a.m.
  * 
  * Para cambiar esta plantilla use Herramientas | Opciones | Codificación | Editar Encabezados Estándar
  */
 namespace ImeiReader
 {
-	partial class Frmbusq
+	partial class Frmgarant
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -36,14 +36,24 @@ namespace ImeiReader
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.btnback = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.resultGrid = new System.Windows.Forms.DataGridView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textbimei = new System.Windows.Forms.TextBox();
-			this.btnback = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.resultGrid)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// btnback
+			// 
+			this.btnback.Location = new System.Drawing.Point(218, 287);
+			this.btnback.Name = "btnback";
+			this.btnback.Size = new System.Drawing.Size(75, 23);
+			this.btnback.TabIndex = 3;
+			this.btnback.Text = "&Regresar";
+			this.btnback.UseVisualStyleBackColor = true;
+			this.btnback.Click += new System.EventHandler(this.BtnbackClick);
 			// 
 			// groupBox1
 			// 
@@ -53,9 +63,9 @@ namespace ImeiReader
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(502, 269);
-			this.groupBox1.TabIndex = 0;
+			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Busqueda por IMEI";
+			this.groupBox1.Text = "Consultar fecha de garantia del producto";
 			// 
 			// resultGrid
 			// 
@@ -88,36 +98,26 @@ namespace ImeiReader
 			this.textbimei.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.textbimei.TextChanged += new System.EventHandler(this.TextbimeiTextChanged);
 			// 
-			// btnback
-			// 
-			this.btnback.Location = new System.Drawing.Point(218, 287);
-			this.btnback.Name = "btnback";
-			this.btnback.Size = new System.Drawing.Size(75, 23);
-			this.btnback.TabIndex = 1;
-			this.btnback.Text = "&Regresar";
-			this.btnback.UseVisualStyleBackColor = true;
-			this.btnback.Click += new System.EventHandler(this.BtnbackClick);
-			// 
-			// Frmbusq
+			// Frmgarant
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(530, 317);
+			this.ClientSize = new System.Drawing.Size(530, 315);
 			this.Controls.Add(this.btnback);
 			this.Controls.Add(this.groupBox1);
 			this.MaximizeBox = false;
-			this.Name = "Frmbusq";
-			this.Text = "IMEIReader::Busqueda";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmbusqFormClosing);
+			this.Name = "Frmgarant";
+			this.Text = "IMEIReader::Garantia";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmgarantFormClosing);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
 			this.ResumeLayout(false);
 		}
-		private System.Windows.Forms.DataGridView resultGrid;
-		private System.Windows.Forms.Button btnback;
 		private System.Windows.Forms.TextBox textbimei;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.DataGridView resultGrid;
 		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.Button btnback;
 	}
 }
